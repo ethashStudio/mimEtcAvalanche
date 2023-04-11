@@ -23,18 +23,19 @@
             </div>
             <div class="regular-text">
               This is a test version of MIM fork for research purpose. Great
-              thanks to the MIM team. We find that Mumbai testnet is relatively
-              more stable than Mordor so we deployed the ETC version on Mumbai
-              testnet. there is a corresponding version on Mordor and finally we
-              will deploy it on ETC mainnet.
+              thanks to the MIM team. We find that Avalanche Fuji testnet is
+              relatively more stable than Mordor, so we deployed the ETC version
+              on Avalanche fuji testnet. Finally we will deploy it on ETC
+              mainnet.
             </div>
             <div class="regular-text">
-              Now ask Mumbai faucet for some test Matic, and click "GET WETC"
-              button above to get some WETC. Then try this DApp and enjoy!
+              Now ask Avalanche Fuji testnet faucet for some test Avax, and
+              click "GET WETC" button above to get some WETC. Then try this DApp
+              and enjoy!
             </div>
             <div class="regular-text">
-              WETC smart contract on Mumbai is
-              0xF62b40F2f32a299D7387C3472A69A5a1bf1De664
+              WETC smart contract on Avalanche Fuji Testnet is
+              0x184250De89752D584962f352f1315cD5120B5Fce
             </div>
           </div>
         </div>

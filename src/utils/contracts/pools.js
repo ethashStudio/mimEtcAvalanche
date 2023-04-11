@@ -5,7 +5,7 @@ export default [
     id: 2,
     contract: {
       name: "CauldronMediumRiskV1",
-      address: "0xE252D38528E93c18777722138b3C81437aDda23d",
+      address: "0x243cE3d0f91225500b895aA93e20426D124989bB",
       abi: [
         {
           inputs: [
@@ -490,7 +490,7 @@ export default [
     token: {
       name: "WETC",
       decimals: 18,
-      address: "0x35c66ecA60c45C6c1C6f48B0Aa6795e3835d3952",
+      address: "0x184250De89752D584962f352f1315cD5120B5Fce",
       oracleId: 1,
       oracleDatas: {
         multiply: "0x0000000000000000000000000000000000000000",
@@ -1373,7 +1373,7 @@ export default [
     pairToken: {
       name: "MIM",
       decimals: 18,
-      address: "0xef53cF7AFE42C90D98455Af2e192bfe57293CaD5",
+      address: "0x499d3f60014241847c693c54DA237a7942612A38",
       abi: [
         {
           anonymous: false,
@@ -1632,7 +1632,7 @@ export default [
     ltv: 75,
     initialMax: 300,
     swapContractInfo: {
-      address: "0x915f84DAA397f3bbc4eD58b0015B82259D9d5838",
+      address: "0xc97864ef1566DB1DD6eAa13fd334F0D178Cd257F",
       abi: [
         {
           inputs: [

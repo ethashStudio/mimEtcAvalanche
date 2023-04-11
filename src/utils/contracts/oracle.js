@@ -3,7 +3,7 @@ export default [
     name: "YearnChainlinkOracleV2",
     id: 1,
     contractChain: "0xa869",
-    address: "0xed448b3f93D61a008E543347a7826Bab1Ab64FB5",
+    address: "0xD119aFbb30367382970d849680C2732748523047",
     abi: [
       {
         inputs: [
