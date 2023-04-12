@@ -106,6 +106,8 @@ export default {
       console.log(tokenPairRate);
 
       const userBorrowPart = await this.getUserBorrowPart(poolContract);
+      const totalBorrowElastic = await this.getTotalBorrowElastic(poolContract);
+      const totalBorrowBase = await this.getTotalBorrowBase(poolContract);
       const userCollateralShare = await this.getUserCollateralShare(
         poolContract,
         pool.token.decimals
@@ -165,9 +167,12 @@ export default {
       console.log(tokenPrice);
       console.log(pool.token.decimals);
 
+      console.log(totalBorrowElastic);
       const collateralInfo = this.createCollateralInfo(
         userCollateralShare,
         userBorrowPart,
+        totalBorrowElastic,
+        totalBorrowBase,
         tokenPrice,
         pool.ltv
       );
@@ -224,6 +229,32 @@ export default {
           userBorrowPart.toString()
         );
         return parsedBorrowed;
+      } catch (e) {
+        console.log("getuserBorrowPartNonce err:", e);
+      }
+    },
+    async getTotalBorrowElastic(poolContract) {
+      try {
+        const totalBorrow = await poolContract.totalBorrow();
+        const totalBorrowElastic = totalBorrow.elastic;
+        // const parsedBorrowed = this.$ethers.utils.formatUnits(
+        // totalBorrowElastic.toString()
+        // );
+        // return parsedBorrowed;
+        return totalBorrowElastic;
+      } catch (e) {
+        console.log("getuserBorrowPartNonce err:", e);
+      }
+    },
+    async getTotalBorrowBase(poolContract) {
+      try {
+        const totalBorrow = await poolContract.totalBorrow();
+        const totalBorrowBase = totalBorrow.base;
+        // const parsedBorrowed = this.$ethers.utils.formatUnits(
+        // totalBorrowBase.toString()
+        // );
+        // return parsedBorrowed;
+        return totalBorrowBase;
       } catch (e) {
         console.log("getuserBorrowPartNonce err:", e);
       }
@@ -351,7 +382,14 @@ export default {
         },
       ];
     },
-    createCollateralInfo(userCollateralShare, userBorrowPart, tokenPrice, ltv) {
+    createCollateralInfo(
+      userCollateralShare,
+      userBorrowPart,
+      totalBorrowElastic,
+      totalBorrowBase,
+      tokenPrice,
+      ltv
+    ) {
       const tokenInUsd = userCollateralShare / tokenPrice;
 
       const maxMimBorrow = (tokenInUsd / 100) * (ltv - 1);
@@ -384,7 +422,15 @@ export default {
         },
         {
           title: "MIM borrowed",
-          value: `$${parseFloat(userBorrowPart).toFixed(4)}`,
+          // value: `$${(
+          // (parseFloat(userBorrowPart) * parseFloat(totalBorrowElastic)) /
+          // parseFloat(totalBorrowBase)
+          // ).toFixed(4)}`,
+          // value: `$${parseFloat(userBorrowPart).toFixed(4)}`,
+          value: `$${(
+            parseFloat(userBorrowPart) *
+            (totalBorrowElastic / totalBorrowBase)
+          ).toFixed(4)}`,
           additional: "",
         },
         {
