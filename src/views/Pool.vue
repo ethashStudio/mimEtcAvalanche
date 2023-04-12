@@ -51,6 +51,8 @@
           :tokenPairDecimals="pool.pairToken.decimals"
           :userTotalCollateral="pool.userCollateralShare"
           :userTotalBorrowed="pool.userBorrowPart"
+          :totalBorrowElastic="totalBorrowElastic"
+          :totalBorrowBase="totalBorrowBase"
           :ltv="pool.ltv"
         />
 
@@ -95,6 +97,8 @@ export default {
   data() {
     return {
       actionType: "borrow",
+      totalBorrowElastic: 0,
+      totalBorrowBase: 0,
       // pool: null,
       gasLimitConst: 1000,
     };
@@ -112,6 +116,11 @@ export default {
     },
   },
   methods: {
+    async getTotalBorrow() {
+      const result = await this.pool.contractInstance.totalBorrow();
+      this.totalBorrowElastic = result.elastic;
+      this.totalBorrowBase = result.base;
+    },
     setActionType(type) {
       if (type !== this.actionType) this.actionType = type;
     },
@@ -2594,7 +2603,10 @@ export default {
       return false;
     }
 
-    console.log("POOL:", poolId);
+    console.log("xxPOOL:", poolId);
+    await this.getTotalBorrow();
+    console.log("BorrowElastic:", this.totalBorrowElastic);
+    console.log("BorrowBase:", this.totalBorrowBase);
 
     if (
       this.$route.query.actionType &&
