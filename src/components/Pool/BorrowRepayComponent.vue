@@ -194,7 +194,8 @@ export default {
         )
           return this.parsedPairBalance;
 
-        return this.userTotalBorrowed;
+        // return this.userTotalBorrowed;
+        return null;
       }
 
       return 0;
@@ -777,3 +778,4 @@ export default {
   }
 }
 </style>
+
