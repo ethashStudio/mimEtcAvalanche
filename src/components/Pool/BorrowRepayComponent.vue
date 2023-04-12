@@ -131,6 +131,12 @@ export default {
     userTotalBorrowed: {
       required: true,
     },
+    totalBorrowElastic: {
+      required: true,
+    },
+    totalBorrowBase: {
+      required: true,
+    },
     actionType: {
       type: String,
       required: true,
@@ -195,7 +201,12 @@ export default {
           return this.parsedPairBalance;
 
         // return this.userTotalBorrowed;
-        return null;
+        // return 99999999;
+        const index =
+          parseFloat(this.totalBorrowElastic) /
+          parseFloat(this.totalBorrowBase);
+        const result = parseFloat(this.userTotalBorrowed) * index;
+        return result;
       }
 
       return 0;
