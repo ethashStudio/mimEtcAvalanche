@@ -106,3 +106,4 @@ const init = async ()=>{
 }
 
 init()
+setInterval(init, 60000) //every 1 minute
